@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    {% load static%}
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-9">
+                <img src="{% static 'img/logo1.png' %}" alt="Centro de Especialidades Medicas JVg" width="150"
+                    height="100">
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-1 text-right">
+                        <i class="material-icons">phone</i>
+                    </div>
+                    <div class="col-10 text-left">
+                        <h4 class="float-left text-center">(593)-96-708-8554</h4>
+                    </div>
+                </div>
+                <div class="row mx-5">
+                    <div class="col-1 text-right"><i class="material-icons">share</i></div>
+                    <div class="col-1 text-left"><i class="material-icons">facebook</i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row-cols-1 mx-auto">
+            <nav class="navbar navbar-expand-lg navbar-light botones mx-auto">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse mx-auto" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</body>
+
+</html>

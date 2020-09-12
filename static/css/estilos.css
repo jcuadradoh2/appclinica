@@ -1,0 +1,41 @@
+.titulo_bold{
+    font-family: Muli;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 40px;
+    /* Light */
+    color: #FFFFFF;
+}
+.botones{
+    color: #fff;
+    background-color: rgba(76, 194, 166, 0.81);    
+}
+.paragraph_bold{
+    /* Paragraph Bold */
+
+    font-family: Muli;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 25px;
+    /* identical to box height */
+
+    /* Dark */
+    color: #000000;
+
+}
+.paragraph_light{
+    /* Paragraph Bold */
+
+    font-family: Muli;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+    /* Dark */
+    color: #000000;
+
+}
