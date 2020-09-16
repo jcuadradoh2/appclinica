@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 from login.views import LoginView, IndexView
+from appatencion.views import menuView
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LoginView.as_view(), name='login'),    
     path('index/', IndexView.as_view(), name='index'),  
+    path('menu/', menuView.as_view(), name='menu'),
 ]
 
 if settings.DEBUG:
