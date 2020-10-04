@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ titulo }}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header" data-background-color="blue">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Mantenimientos</a></li>
+                        <li class="breadcrumb-item active " aria-current="page">Empleados</li>
+                        <!--<button class="btn mx-auto"><span class="material-icons md-18">arrow_back_ios</span></button>-->
+                    </ol>
+                </nav>
+            </div>
+            <div class="container">
+                <div class="table-responsive-sm"><br>
+                    <div class="row" style="margin-bottom:5px">
+                        <div class="col-5 col-md-3">
+                            <input type="text" class="form-control" placeholder="Escriba un nombre">
+                        </div>
+                        <div class="col-2 col-md-1 justify-content-start">
+                            <button class="btn botones float-md-right float-left">Buscar</button>
+                        </div>
+                        <div class="col-5 col-md-8 justify-content-end">
+                            <a href="{% url 'doctor' %}" class="btn botones float-right w80"><b>Nuevo</b></a>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-hover">
+                    <thead>
+                    
+                    
+                        <thead class="thead-dark">
+                            {% for data in header_table %}
+                                <th scope="col" class="text-center">{{ data }}</th>  
+                            {% endfor %}                     
+                            <th scope="col" class="text-center">Acción</th>                                   
+                        </thead>
+                        </thead>
+                        <tbody id="tabla">                                                
+                        {% for data in datos %}
+                        
+                        <tr>           
+                                <td class="text-center">{{ data.id }}</td>
+                                 {% if  data.foto %}
+                                    <td><img src="{% static 'img/doctor.jpg' %}" class="img-thumbnail rounded-circle" width="80px">
+                                    </td>
+                                {% else %}
+                                    <td class=" text-center">
+                                        <img src="{% static 'img/sinfoto.png' %}" class="img-thumbnail rounded-circle" width="40px">
+                                    </td>                                                               
+                                {% endif %}
+                                <!------------------------------Con eso recorro todos los items del diccionario que esten despues de foto y antes de sexo-------------------------------------->
+                                 {% for k, v in data.items %}                                                                                           
+                                    {% if k != 'foto' and k != 'sexo' and k != 'id' %}
+                                        <td class="text-center">{{ v }}</td>
+                                    {% endif %}                                
+                                {% endfor %} 
+                                 <!------------------------------------------------------------------------------------------------------------------>
+                                {% if data.sexo == 'M' %}
+                                <td class="text-center"><span
+                                        class="badge badge-pill badge-success">{{data.sexo}}</span>
+                                </td>
+                                {% else %}
+                                <td class="text-center"><span
+                                        class="badge badge-pill badge-danger">{{data.sexo}}</span>
+                                </td>
+                                {% endif %}                                                                                           
+                                <td style="width:130px" class="text-center">                            
+                                    <a href="{% url url data.id %}" class="btn btn-warning btn-sm w-25">
+                                        <span class='fa fa-edit fa-lg'></span>
+                                    </a>
+                                    <a href="#" class="btn btn-danger btn-sm w-25"  rel="action" data-json='{"accion":"elim" ,"id":"{{data.id}}"}'>
+                                        <span class='fa fa-trash-o fa-lg'></span>
+                                    </a>
+                                </td>                            
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-4 float-left">
+                            <label class="text-muted">
+                                Mostrando 1 de 100 registros
+                            </label>
+                        </div>
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <nav aria-label="..." class="float-right">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<p class='alert alert-danger'>Si No hay clientes registrados presenta esta alerta</p>-->
+    </div>
+</div>
+{% endblock %}
+{% block frmModal %}
+<!-- inicio formulario Modal para Eliminar -->
+<div class="modal fade" id="myModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="frmEliminar" id="frmEliminar" method="POST" action="{% url 'eliminar_doctor' 0 %} ">
+                {% csrf_token %}
+                <div class="modal-header bg-primary text-light">
+                    <h3 class="modal-title ml-5">Mensaje Del Sistema</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id" value="">
+                    <input type="hidden" name="action" value="elim">
+                    <div class="h3 text-center">
+                        <label class="text-primary">¿Esta seguro de eliminar el paciente?</label>
+                        <span class="text-light badge" id="descripcion"></span><br>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Final Formulario Modal-->
+{% endblock frmModal %}
+{% block js %}
+<script>
+    $(function () {
+        $('#tabla').on('click', 'a[rel="action"]', function () {            
+            let data = $(this).data('json'),
+                action = data.accion,
+                id = data.id;            
+            let desc = $(this).parents('tr').children('td').eq(1).html();            
+            $('#descripcion').html(desc);
+            $('#frmEliminar #id').val(id);
+            $('#myModal').modal('show');
+            return;
+        });
+    })    
+</script>
+{% endblock %}

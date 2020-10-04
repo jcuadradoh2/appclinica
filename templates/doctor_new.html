@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% block title %}
+    Agregar Doctor
+{% endblock %}
+{% block content %}
+<div class="row">
+    {% load static %}
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header" data-background-color="blue">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Mantenimientos</a></li>
+                        <li class="breadcrumb-item"><a href="#">Empleados</a></li>
+                        <li class="breadcrumb-item active " aria-current="page">Nuevo Empleado</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">                
+                    <form method="POST" enctype="multipart/form-data">  
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+                        <strong> {{ form.errors | capfirst }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endif %}
+                        <div class="card mx-5" style="">
+                            <!-------Aqui va el color background-color: #EBF5FB---------->
+                            <div class="row mx-2 my-3 form-group">
+                                <div class="col-9 font-weight-bolder">                                
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.nombre.id_for_label }}">Nombre: </label>
+                                            {{ form.nombre }}
+                                        </div>
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.apellido.id_for_label }}">Apellido: </label>
+                                            {{ form.apellido }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.cedula.id_for_label }}">Cedula: </label>
+                                            {{ form.cedula }}
+                                        </div>
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.email.id_for_label }}">Email: </label>
+                                            {{ form.email }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.telefono.id_for_label }}">Telefono: </label>
+                                            {{ form.telefono }}
+                                        </div>
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.direccion.id_for_label }}">Direccion: </label>
+                                            {{ form.direccion }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.nacimiento.id_for_label }}">Fecha de Nacimiento: </label>
+                                            {{ form.nacimiento }}
+                                        </div>
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.civil.id_for_label }}">Estado Civil: </label>
+                                            {{ form.civil }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.provincia.id_for_label }}">Provincia: </label>
+                                            {{ form.provincia }}
+                                        </div>
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.ciudad.id_for_label }}">Ciudad: </label>
+                                            {{ form.ciudad }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.titulo.id_for_label }}">Titulo: </label>
+                                            {{ form.titulo }}
+                                        </div>
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.profesion.id_for_label }}">Profesion: </label>
+                                            {{ form.profesion }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.sexo.id_for_label }}">Genero: </label>
+                                            {{ form.sexo }}
+                                        </div>
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.direccion.id_for_label }}">Direccion: </label>
+                                            {{ form.direccion }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row justify-content-center">
+                                        <div class="card mt-4" style="width: 15rem;">
+                                            <img class="card-img-top" src="{% static 'img/sinfoto.png' %}" alt="Card image" id="preview_foto"> 
+                                            <div class="card-body">
+                                                <h5 class="card-title font-weight-lighter">Imagen de perfil</h5>
+                                                <p class="card-text">
+                                                    <div class="form-group" onclick="preview( {{form.foto.id_for_label}} )">
+                                                        {{ form.foto }}
+                                                    </div>
+                                                </p>
+                                                {% comment %} <p class="card-text"><button type="submit"
+                                                        class="btn botones">Guardar</button></p> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-4 mx-5">
+                            <div class="row mx-2 mt-4">
+                                <div class="col-9 font-weight-bolder">
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.consultoria.id_for_label }}">Consultorio:</label>
+                                            {{ form.consultoria }}
+                                        </div>
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.lugar.id_for_label }}">Direccion de Consultorio: </label>
+                                            {{ form.lugar }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.duracion.id_for_label }}">Duracion de Consulta:</label>
+                                            {{ form.duracion }}
+                                        </div>
+                                        <div class="form-group col-12 col-md-6">
+                                            <label for="{{form.registro.id_for_label }}">Registro Medico: </label>
+                                            {{ form.registro }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12 col-md-12">
+                                            <label for="{{form.horario.id_for_label }}">Horario:</label>
+                                            {{ form.horario }}
+                                        </div>
+                                        <div class="form-check col-12 col-md-6 ml-3">
+                                            {{ form.estado }}
+                                            <label for="{{ form.estado.id_for_label }}"
+                                                class="form-check-label">Estado</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 form-group">
+                                    <div class="row justify-content-center">
+                                        <div class="card mt-4" style="width: 15rem;">
+                                            <img class="card-img-top" src="{% static 'img/sinfoto.png' %}" alt="Card image" id="preview_logo">
+                                            <div class="card-body">
+                                                <h5 class="card-title font-weight-lighter">Nuevo logo</h5>
+                                                <p class="card-text">
+                                                    <div class="form-group">
+                                                        {{ form.logo }}
+                                                    </div>
+                                                </p>
+                                                {% comment %} <p class="card-text"><button type="submit"
+                                                        class="btn botones">Guardar</button></p> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-group row justify-content-center my-4">
+                                <div class="col-4 col-md-2">
+                                    <a href="{% url 'empleado_view' %}"><input class="btn bg-warning w-100 text-light float-right" value="Cancelar"></input></a>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <button type="submit" class="btn botones w-100 float-left">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+<script>
+function preview(){
+    const $seleccionArchivos = document.querySelector("#id_logo"),
+    $imagenPrevisualizacion = document.querySelector("#preview_logo"),
+    $imagen = document.querySelector("#preview_foto");
+    $seleccionFoto=document.querySelector("#id_foto");
+
+    // Escuchar cuando cambie       
+    $seleccionArchivos.addEventListener("change", () => {   
+        const objectURL = URL.createObjectURL($seleccionArchivos.files[0]);    
+        $imagenPrevisualizacion.src = objectURL;
+    });
+    
+    $seleccionFoto.addEventListener("change", () => {   
+        const objectURL = URL.createObjectURL($seleccionFoto.files[0]);    
+        $imagen.src = objectURL;
+    });    
+}
+preview();
+</script>
+{% endblock %}

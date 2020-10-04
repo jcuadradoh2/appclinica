@@ -1,0 +1,50 @@
+.titulo_bold{
+    font-family: Source Sans Pro, Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 40px;
+    /* Light */
+    color: #FFFFFF;
+}
+.botones{
+    color: #fff;
+    background-color: rgba(76, 194, 166, 0.81);      
+}
+.paragraph_bold{
+    /* Paragraph Bold */
+    font-family: Source Sans Pro, Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 25px;
+    /* identical to box height */
+
+    /* Dark */
+    color: #000000;
+
+}
+.paragraph_light{    
+    font-family: Source Sans Pro, Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 16px;
+    line-height: 20px;   
+    color: #000000;
+}
+
+.helvetica{
+    font-family:Source Sans Pro, Helvetica, Arial, sans-serif;
+}
+
+.w80{
+    width:80px;
+}
+
+.w20{
+    width:20px;
+}
+
+.shadow{
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
+}

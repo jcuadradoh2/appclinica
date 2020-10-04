@@ -38,13 +38,13 @@
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="/media/fotos/george.jpg" class="img-fluid rounded-circle mr-2 avatar" alt="">
-                        Dr George Calderon
+                        Dr George Calderon {{ user.username | capfirst }}
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Perfil</a>
                         <a class="dropdown-item" href="#">Cambiar contrseña</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">log out</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">log out</a>
                       </div>
                     </li>
                   </ul>

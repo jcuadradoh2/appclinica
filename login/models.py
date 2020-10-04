@@ -51,11 +51,9 @@ class Persona(models.Model):
     cedula=models.CharField('Cedula', max_length=13, unique=True)
     nombre=models.CharField(max_length=100, verbose_name='Nombres')
     apellido=models.CharField(max_length=100, verbose_name='Apellidos')
-    nacimiento=models.DateField(
-        'Fecha Nacimiento', blank=True, null=True)
+    nacimiento=models.DateField('Fecha Nacimiento', blank=True, null=True)
     sexo=models.CharField('Sexo', choices=tipo_sexo, default='N', max_length=1)
-    civil=models.CharField(
-        'Estado Civil', choices=estado_civil, default='S', max_length=1)
+    civil=models.CharField('Estado Civil', choices=estado_civil, default='S', max_length=1)
     profesion=models.ManyToManyField(Profesion)
     titulo=models.ManyToManyField(Titulo)
     provincia=models.ForeignKey(Provincia, on_delete=models.PROTECT, blank=True, null=True)
@@ -108,7 +106,7 @@ class Paciente(Persona):
             return '{}'.format(self.nombre)
 
 class Doctor(Persona):
-    consultoria=models.CharField('Nombre de consultorio', max_length=200)
+    consultoria=models.CharField(max_length=200)
     lugar=models.CharField(verbose_name='Direccion de Consultorio', max_length=100)
     logo=models.ImageField(verbose_name='Logo', upload_to='Logos/', blank=True, null=True)
     horario=models.ManyToManyField(Horario)
