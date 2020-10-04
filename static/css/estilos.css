@@ -88,6 +88,11 @@ a:hover {
     max-width: 200px;
 }
 
+.foto:hover{
+    transform: scale(1.1);
+    cursor: -moz-zoom-in;
+}
+
 #content {
     overflow-y: auto;
     height: 100vh;
@@ -103,5 +108,47 @@ a:hover {
 
 #sidebar-container .menu a{
     border-bottom: 1px solid #fff;
+}
+
+.container .pac{
+    background: #8ED8C6;
+}
+
+.container .ef:hover{
+    transform: scale(1.1);
+    cursor: -moz-zoom-in;
+}
+
+
+.container .fopa{
+    background: #37B798;
+}
+
+.container .cita{
+    background: #B5D8A5;
+}
+
+.container .foci{
+    background: #98D881;
+}
+
+.container .agen{
+    background: #64E1E9;
+}
+
+.container .foag{
+    background: #81D8A4;
+}
+
+.container .conf{
+    background: #5099EF;
+}
+
+.container .focon{
+    background: #3866AB;
+}
+
+.container .ima{
+    margin-left: 70%;
 }
 

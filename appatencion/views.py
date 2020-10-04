@@ -4,3 +4,7 @@ from django.views.generic.base import TemplateView
 
 class menuView(TemplateView):
     template_name = "menu.html"
+
+
+class opcionesView(TemplateView):
+    template_name = "opciones.html"

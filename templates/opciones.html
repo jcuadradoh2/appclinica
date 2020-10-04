@@ -1,0 +1,91 @@
+{% extends 'menu.html' %}
+
+
+{% block main %}
+{% load static %}
+
+
+<div class="container">
+
+
+  <div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-4">
+      <div class="ef card">
+
+        <a href="{% url 'base:paciente' %}">
+          <div class="pac card-body position-relative">
+            <div class=" ima position-absolute">
+              <img class="img-fluid" src="/media/fotos/Pacientes.png" alt="">
+            </div>
+            <h5 class="card-title text-white">3</h5>
+            <p class="card-text lead text-uppercase font-weight-bolder text-white"> Pacientes</p>
+          </div>
+          <div class="card-footer fopa">
+            <small class="text-white-50 font-weight-bolder lead">mas información</small>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="col mb-4">
+      <div class="ef card">
+        <a href="#">
+          <div class=" cita card-body position-relative">
+            <div class="ima position-absolute">
+              <img class="img-fluid" src="/media/fotos/citas.png" alt="">
+            </div>
+            <h5 class="card-title text-white">3</h5>
+            <p class="card-text lead text-uppercase font-weight-bolder text-white">Citas</p>
+          </div>
+          <div class="card-footer foci">
+            <small class="text-white-50 font-weight-bolder lead">mas información</small>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="col mb-4">
+      <div class="ef card">
+        <a href="#">
+          <div class="agen card-body position-relative">
+            <div class="ima position-absolute">
+              <img class="img-fluid" src="/media/fotos/calendario.png" alt="">
+            </div>
+            <h5 class="card-title text-white">3</h5>
+            <p class="card-text font-weight-bolder lead text-uppercase text-white ">Agenda</p>
+          </div>
+          <div class="card-footer foag">
+            <small class="text-white-50 font-weight-bolder lead">mas información</small>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="col mb-4">
+      <div class="ef card">
+        <a href="#">
+          <div class="conf card-body position-relative">
+            <div class="ima position-absolute">
+              <img class="img-fluid" src="/media/fotos/configuracion.png" alt="">
+            </div>
+            <h5 class="card-title text-white">3</h5>
+            <p class="card-text lead text-uppercase font-weight-bolder text-white">Configuracion</p>
+          </div>
+          <div class="card-footer focon">
+            <small class="text-white-50 font-weight-bolder lead">mas información</small>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+{% endblock main %}
