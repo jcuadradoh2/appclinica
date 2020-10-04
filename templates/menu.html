@@ -1,30 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-<<<<<<< HEAD
-        <div class="w-100">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand d-inline-block" href="#">Centro De Especialidades JVG</a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="/media/fotos/george.jpg" class="img-fluid rounded-circle mr-2 avatar" alt="">
-                        Dr George Calderon {{ user.username | capfirst }}
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Perfil</a>
-                        <a class="dropdown-item" href="#">Cambiar contrseña</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'logout' %}">log out</a>
-                      </div>
-                    </li>
-                  </ul>
-=======
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -56,6 +32,7 @@
             class="fas fa-user-injured fa-lg mr-2"></i> Pacientes</a>
         <a href="#" class="d-block p-4 text-light"> <i class="fas fa-notes-medical fa-lg mr-2"></i> Consulta</a>
         <a href="#" class="d-block p-4 text-light"> <i class="fas fa-clipboard-list fa-lg mr-2"></i> Agenda</a>
+        <a href="{% url 'base:doctor_view' %}" class="d-block p-4 text-light"> <i class="fas fa-user-md fa-lg mr-2"></i> Doctor</a>
         <a href="#" class="d-block p-4 text-light"> <i class="fas fa-cogs fa-lg mr-2"></i> Configuracion</a>
       </div>
     </div>
@@ -86,7 +63,6 @@
                   <a class="dropdown-item" href="#">Cambiar contrseña</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">log out</a>
->>>>>>> c3c33190fb2c938686b779b500ea365d639e2217
                 </div>
               </li>
             </ul>

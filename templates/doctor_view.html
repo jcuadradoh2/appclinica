@@ -1,10 +1,6 @@
-{% extends "base.html" %}
+{% extends "menu.html" %}
 
-{% block title %}
-{{ titulo }}
-{% endblock %}
-
-{% block content %}
+{% block main %}
 {% load static %}
 <div class="row">
     <div class="col-md-12">
@@ -14,8 +10,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Mantenimientos</a></li>
-                        <li class="breadcrumb-item active " aria-current="page">Empleado</li>
-                        <!--<button class="btn mx-auto"><span class="material-icons md-18">arrow_back_ios</span></button>-->
+                        <li class="breadcrumb-item active " aria-current="page">Doctor</li>                        
                     </ol>
                 </nav>
             </div>
@@ -23,14 +18,14 @@
                 <div class="table-responsive-sm"><br>
                     <form class="row" style="margin-bottom:5px">
                         <div class="col-5 col-md-3">
-                            <input class="form-control mr-2" placeholder="Texto a Buscar"
+                            <input class="form-control mr-2" placeholder="Nombre a Buscar"
                             name="nombre" value={{nombre}}>
                         </div>
                         <div class="col-2 col-md-1 justify-content-start">
                             <button type="submit" class="btn botones float-md-right float-left">Buscar</button>
                         </div>
                         <div class="col-5 col-md-8 justify-content-end">
-                            <a href="{% url 'doctor' %}" class="btn botones float-right w80"><b>Nuevo</b></a>
+                            <a href="{% url 'base:doctor' %}" class="btn botones float-right w80"><b>Nuevo</b></a>
                         </div>
                     </form>
                     <table class="table table-bordered table-hover">
@@ -39,8 +34,7 @@
 
                             <thead class="thead-dark">
                                 <th scope="col" class="text-center">ID</th>
-                                <th scope="col" class="text-center">Foto</th>
-                                <th scope="col" class="text-center">Cedula</th>
+                                <th scope="col" class="text-center">Foto</th>                                
                                 <th scope="col" class="text-center">Nombres</th>
                                 <th scope="col" class="text-center">Sexo</th>
                                 <th scope="col" class="text-center">Ciudad</th>
@@ -61,8 +55,7 @@
                                 {% else %}
                                 <td class=" text-center"><img src="{% static 'img/sinfoto.png' %}"
                                         class="img-thumbnail rounded-circle" width="40px" height="40px"></td>
-                                {% endif %}
-                                <td class="text-center">{{data.cedula}}</td>
+                                {% endif %}                                
                                 <td class="text-center">{{ data.nombre | capfirst }} &nbsp
                                     {{ data.apellido | capfirst }}</td>
                                 {% if data.sexo == 'M' %}
@@ -80,7 +73,7 @@
                                     {{data.horario.hasta}}</td>
                                 <td class="text-center">{{data.duracion}}</td>
                                 <td style="width:130px" class="text-center">
-                                    <a href="{% url 'editar_doctor' data.id %}" class="btn btn-warning btn-sm w-25">
+                                    <a href="{% url 'base:doctor_edit' data.id %}" class="btn btn-warning btn-sm w-25">
                                         <span class='fa fa-edit fa-lg'></span>
                                     </a>
                                     <a href="#" class="btn btn-danger btn-sm w-25" rel="action"
@@ -155,12 +148,12 @@
     </div>
 </div>
 {% endblock %}
-{% block frmModal %}
+{% block frmodal %}
 <!-- inicio formulario Modal para Eliminar -->
 <div class="modal fade" id="myModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form name="frmEliminar" id="frmEliminar" method="POST" action="{% url 'eliminar_doctor' 0 %} ">
+            <form name="frmEliminar" id="frmEliminar" method="POST" action="{% url 'base:doctor_delete' 0 %} ">
                 {% csrf_token %}
                 <div class="modal-header bg-primary text-light">
                     <h3 class="modal-title ml-5">Mensaje Del Sistema</h3>
@@ -185,8 +178,8 @@
     </div>
 </div>
 <!-- Final Formulario Modal-->
-{% endblock frmModal %}
-{% block js %}
+{% endblock frmodal %}
+{% block jscript %}
 <script>
     $(function () {
         $('#tabla').on('click', 'a[rel="action"]', function () {

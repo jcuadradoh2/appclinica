@@ -31,8 +31,7 @@ class Migration(migrations.Migration):
             name='Horario',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('dia', models.IntegerField(choices=[(3, 'Miercoles'), (4, 'Jueves'), (0, 'Domingo'), (5, 'Viernes'), (6, 'Sabado'), (1, 'Lunes'), (7, 'Domingo'), (2, 'Martes')], default=1, verbose_name='Dia')),
-                ('dia', models.IntegerField(choices=[(0, 'Domingo'), (5, 'Viernes'), (1, 'Lunes'), (4, 'Jueves'), (7, 'Domingo'), (2, 'Martes'), (3, 'Miercoles'), (6, 'Sabado')], default=1, verbose_name='Dia')),
+                ('dia', models.IntegerField(choices=[(3, 'Miercoles'), (4, 'Jueves'), (0, 'Domingo'), (5, 'Viernes'), (6, 'Sabado'), (1, 'Lunes'), (7, 'Domingo'), (2, 'Martes')], default=1, verbose_name='Dia')),                
                 ('desde', models.TimeField(blank=True, null=True, verbose_name='Desde')),
                 ('hasta', models.TimeField(blank=True, null=True, verbose_name='Hasta')),
                 ('estado', models.BooleanField(default=True)),

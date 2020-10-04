@@ -1,19 +1,16 @@
-{% extends "base.html" %}
-{% block title %}
-    Agregar Doctor
-{% endblock %}
-{% block content %}
-<div class="row">
+{% extends "menu.html" %}
+{% block main %}
+<div class="row text-dark">
     {% load static %}
     <div class="col-12">
         <div class="card">
             <div class="card-header" data-background-color="blue">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'menu' %}">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Mantenimientos</a></li>
-                        <li class="breadcrumb-item"><a href="#">Empleados</a></li>
-                        <li class="breadcrumb-item active " aria-current="page">Nuevo Empleado</li>
+                        <li class="breadcrumb-item"><a href="{% url 'base:doctor_view' %}">Empleados</a></li>
+                        <li class="breadcrumb-item active " aria-current="page">Nuevo Medico</li>
                     </ol>
                 </nav>
             </div>
@@ -179,7 +176,7 @@
                             </div>
                             <div class=" form-group row justify-content-center my-4">
                                 <div class="col-4 col-md-2">
-                                    <a href="{% url 'empleado_view' %}"><input class="btn bg-warning w-100 text-light float-right" value="Cancelar"></input></a>
+                                    <a href="{% url 'base:doctor_view' %}"><input class="btn bg-danger w-100 text-light float-right" value="Cancelar"></input></a>
                                 </div>
                                 <div class="col-4 col-md-2">
                                     <button type="submit" class="btn botones w-100 float-left">Guardar</button>
@@ -192,24 +189,23 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block jscript %}
 <script>
-function preview(){
-    const $seleccionArchivos = document.querySelector("#id_logo"),
-    $imagenPrevisualizacion = document.querySelector("#preview_logo"),
-    $imagen = document.querySelector("#preview_foto");
-    $seleccionFoto=document.querySelector("#id_foto");
-
-    // Escuchar cuando cambie       
-    $seleccionArchivos.addEventListener("change", () => {   
-        const objectURL = URL.createObjectURL($seleccionArchivos.files[0]);    
-        $imagenPrevisualizacion.src = objectURL;
-    });
-    
-    $seleccionFoto.addEventListener("change", () => {   
-        const objectURL = URL.createObjectURL($seleccionFoto.files[0]);    
-        $imagen.src = objectURL;
-    });    
-}
+    function preview(){
+        const $seleccionArchivos = document.querySelector("#id_logo"),
+        $imagenPrevisualizacion = document.querySelector("#preview_logo"),
+        $imagen = document.querySelector("#preview_foto");
+        $seleccionFoto=document.querySelector("#id_foto");    
+        $seleccionArchivos.addEventListener("change", () => {   
+            const objectURL = URL.createObjectURL($seleccionArchivos.files[0]);    
+            $imagenPrevisualizacion.src = objectURL;
+        });        
+        $seleccionFoto.addEventListener("change", () => {   
+            const objectURL = URL.createObjectURL($seleccionFoto.files[0]);    
+            $imagen.src = objectURL;
+        });    
+    }
 preview();
 </script>
-{% endblock %}
+{% endblock jscript %}

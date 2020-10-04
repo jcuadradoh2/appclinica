@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import PacienteView, CrearPacienteView, EditarPacienteView, EliminarPacienteView
+from django.contrib.auth.decorators import login_required
+from .views import * #PacienteView, CrearPacienteView, EditarPacienteView, EliminarPacienteView, DoctorView, EditarDoctorView, EliminarDoctorView, CrearDoctorView, IndexView
 app_name = 'base'
 urlpatterns = [
     path('paciente/', PacienteView.as_view(), name='paciente'),
@@ -8,5 +9,11 @@ urlpatterns = [
          EditarPacienteView.as_view(), name='editar_paciente'),
     path('eliminar_paciente/<int:pk>/',
          EliminarPacienteView.as_view(), name='eliminar_paciente'),
+
+     path('', IndexView.as_view(), name='index'),  
+     path('doctor_view/', login_required(DoctorView.as_view()), name='doctor_view'), 
+     path('doctor/', CrearDoctorView.as_view(), name='doctor'), 
+     path('doctor_edit/<int:pk>/', EditarDoctorView.as_view(), name='doctor_edit'),
+     path('doctor_delete/<int:pk>/', EliminarDoctorView.as_view(), name='doctor_delete'),
 
 ]

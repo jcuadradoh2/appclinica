@@ -3,8 +3,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Paciente
-from .forms import PacienteForm
+from .models import Paciente, Doctor
+from .forms import PacienteForm, DoctorForm
 
 
 class PacienteView(ListView):
@@ -54,3 +54,49 @@ class EliminarPacienteView(DeleteView):
         # object.estado = False
         # object.save()
         return redirect('base:paciente')
+
+#-----------------------------------------------------------------------
+
+class IndexView(TemplateView):
+    template_name = "index.html"
+
+class DoctorView(ListView):
+    model = Doctor
+    template_name = "doctor_view.html"
+    context_object_name = "datos"    
+    paginate_by = 3
+
+    def get_queryset(self):
+        nombre = self.request.GET.get('nombre') if self.request.GET.get('nombre') else ''                
+        return self.model.objects.filter(nombre__icontains=nombre, estado=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['nombre'] = self.request.GET.get(
+            'nombre') if self.request.GET.get('nombre') else ''
+        context['titulo'] = "Consulta de pacientes"          
+        return context
+
+
+class CrearDoctorView(CreateView):
+    model = Doctor    
+    template_name = "doctor_new.html"
+    form_class = DoctorForm
+    success_url = reverse_lazy('doctor_view')
+    context_object_name = "Doctor"
+
+    
+class EditarDoctorView(UpdateView):
+    model = Doctor    
+    template_name = "doctor_new.html"
+    form_class = DoctorForm
+    success_url = reverse_lazy('doctor_view')
+    context_object_name = "Doctor"
+
+
+class EliminarDoctorView(DeleteView):    
+    def post(self, request, *args, **kwargs):
+        pk = request.POST.get("id")
+        doctor = Doctor.objects.get(id=pk)
+        doctor.delete()        
+        return redirect('doctor_view')

@@ -113,3 +113,59 @@ class Paciente(Persona):
 
     def __str__(self):
         return '{}'.format(self.nombre)
+
+
+class Horario(models.Model): 
+    d_semana={(0,'Domingo'), (1, 'Lunes'), (2, 'Martes'), (3, 'Miercoles'), (4,'Jueves'), (5, 'Viernes'), (6, 'Sabado'), (7, 'Domingo')}   
+    dia=models.IntegerField('Dia', choices=d_semana, default=1)
+    desde=models.TimeField('Desde', blank=True, null=True)
+    hasta=models.TimeField('Hasta', blank=True, null=True)    
+    estado=models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name='Dia'
+        verbose_name_plural='Dias'
+
+    def __str__(self):
+        return '{}'.format(self.dia)
+
+class Doctor(Persona):
+    consultoria=models.CharField(max_length=200)
+    lugar=models.CharField(verbose_name='Direccion de Consultorio', max_length=100)
+    logo=models.ImageField(verbose_name='Logo', upload_to='Logos/', blank=True, null=True)
+    horario=models.ManyToManyField(Horario)
+    registro=models.CharField(verbose_name='Registro Medico', max_length=50)
+    duracion=models.IntegerField(verbose_name='Duracion de Consulta', default=30)
+    estado=models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name='Doctor'
+        verbose_name_plural='Doctores'
+
+    def __str__(self):
+            return '{}'.format(self.nombre)
+
+#---------------------------------------------------------------------Sintomas
+class Sintoma(models.Model):
+    descripcion = models.CharField('Sintoma', max_length=100)
+    estado = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Sintoma'
+        verbose_name_plural = 'Sintomas'
+
+    def __str__(self):
+        return '{}'.format(self.descripcion)
+
+
+class Diagnostico(models.Model):
+    codigo = models.CharField('Codigo', max_length=100)
+    descripcion = models.CharField('Diagnostico', max_length=100)
+    estado = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Diagnostico'
+        verbose_name_plural = 'Diagnosticos'
+
+    def __str__(self):
+        return '{}'.format(self.descripcion)
