@@ -27,7 +27,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),    
     #path('appatencion/', include('appatencion.urls')),    
-    path('menu/', login_required(menuView.as_view()), name='menu'),        
+    path('', login_required(menuView.as_view()), name='menu'),        
     #--------------------------------------- login              
     path('accounts/login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),                

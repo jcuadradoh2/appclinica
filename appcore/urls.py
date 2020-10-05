@@ -15,5 +15,4 @@ urlpatterns = [
      path('doctor/', CrearDoctorView.as_view(), name='doctor'), 
      path('doctor_edit/<int:pk>/', EditarDoctorView.as_view(), name='doctor_edit'),
      path('doctor_delete/<int:pk>/', EliminarDoctorView.as_view(), name='doctor_delete'),
-
 ]
