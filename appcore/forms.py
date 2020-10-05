@@ -1,6 +1,6 @@
 from django import forms
 from django.db.models import fields
-from .models import Paciente, Doctor
+from .models import Paciente, Doctor, Agenda
 
 
 class PacienteForm(forms.ModelForm):
@@ -11,43 +11,51 @@ class PacienteForm(forms.ModelForm):
         widgets = {
             'cedula': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
-                    
+                    'class': 'form-control text-primary',
+                    'placeholder': 'Cedula'
+
                 }
             ),
             'nombre': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Nombre'
                 }
             ),
             'apellido': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Apellido'
                 }
             ),
             'nacimiento': forms.DateInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'type': 'date'
                 }
             ),
             'sexo': forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Sexo'
                 }
             ),
             'civil': forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Estadi Civil'
                 }
             ),
             'profesion': forms.SelectMultiple(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Profesion'
                 }
             ),
             'titulo': forms.SelectMultiple(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Titulo'
                 }
             ),
             'provincia': forms.Select(
@@ -62,22 +70,25 @@ class PacienteForm(forms.ModelForm):
             ),
             'direccion': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Direccion'
                 }
             ),
             'telefono': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Telefono'
                 }
             ),
             'email': forms.EmailInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Email'
                 }
             ),
             'foto': forms.FileInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control-file'
                 }
             ),
             'sangre': forms.Select(
@@ -178,11 +189,11 @@ class DoctorForm(forms.ModelForm):
                 }
             ),
 
-             'foto': forms.FileInput(
+            'foto': forms.FileInput(
                 attrs={
                     'class': 'form-control-file'
                 }
-            ),  
+            ),
 
             'consultoria': forms.TextInput(
                 attrs={
@@ -223,5 +234,40 @@ class DoctorForm(forms.ModelForm):
                 attrs={
                     'class': 'form-check-input'
                 }
-            )                                           
+            )
+        }
+
+
+class CitaForm(forms.ModelForm):
+    class Meta:
+        model = Agenda
+
+        fields = '__all__'
+        widgets = {
+
+            'Paciente': forms.TextInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'Medico': forms.TextInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'Fecha Cita': forms.DateInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'Hora Cita': forms.Select(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'estado': forms.CheckboxInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            )
         }

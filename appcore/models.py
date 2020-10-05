@@ -145,6 +145,24 @@ class Doctor(Persona):
     def __str__(self):
             return '{}'.format(self.nombre)
 
+
+class Agenda(models.Model):
+    paciente = models.ForeignKey(Paciente, on_delete=models.PROTECT)
+    doctor = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    fecha = models.DateField(
+        'Fecha de Agenda', blank=True, null=True, default=date.today())
+    hora = models.TimeField('Hora', default=datetime.now().time())
+    estado = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Agenda'
+        verbose_name_plural = 'Agendas'
+
+    def __str__(self):
+        return '{}'.format(self.fecha)
+
+
+
 #---------------------------------------------------------------------Sintomas
 class Sintoma(models.Model):
     descripcion = models.CharField('Sintoma', max_length=100)
