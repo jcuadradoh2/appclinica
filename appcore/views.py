@@ -3,8 +3,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Paciente, Doctor
-from .forms import PacienteForm, DoctorForm
+from .models import Paciente, Doctor, Agenda
+from .forms import PacienteForm, DoctorForm, CitaForm
 
 
 class PacienteView(ListView):
@@ -57,6 +57,58 @@ class EliminarPacienteView(DeleteView):
 
 #-----------------------------------------------------------------------
 
+
+class CitaView(ListView):
+    model = Agenda
+    template_name = "core/cita.html"
+    context_object_name = "cita"
+    #queryset = Paciente.objects.filter(estado=False)
+    paginate_by = 7
+
+    # def get_queryset(self):
+    #     fecha = self.request.GET.get(
+    #         'fecha') if self.request.GET.get('fecha') else ''
+    #     return self.model.objects.filter(fecha__icontains=fecha, estado=True)
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['fecha'] = self.request.GET.get(
+    #         'fecha') if self.request.GET.get('fecha') else ''
+    #     context['titulo'] = "Consulta de citas"
+    #     return context
+
+
+class CrearCitaView(CreateView):
+    model = Agenda
+    #fields = ['nombre', 'apellido', 'cedula']
+    template_name = "core/registrar_cita.html"
+    form_class = CitaForm
+    success_url = reverse_lazy('base:cita')
+    context_object_name = "cita"
+
+
+class EditarCitaView(UpdateView):
+    model = Agenda
+    #fields = ['nombre', 'apellido', 'cedula']
+    template_name = "core/registrar_cita.html"
+    form_class = CitaForm
+    success_url = reverse_lazy('base:cita')
+    context_object_name = "cita"
+
+
+class EliminarCitaView(DeleteView):
+
+    def post(self, request, *args, **kwargs):
+        pk = request.POST.get("id")
+        cita = Agenda.objects.get(id=pk)
+        cita.delete()
+        # object.estado = False
+        # object.save()
+        return redirect('base:cita')
+
+
+#-----------------------------------------------------------------------
+
 class IndexView(TemplateView):
     template_name = "index.html"
 
@@ -82,7 +134,7 @@ class CrearDoctorView(CreateView):
     model = Doctor    
     template_name = "doctor_new.html"
     form_class = DoctorForm
-    success_url = reverse_lazy('doctor_view')
+    success_url = reverse_lazy('base:doctor_view')
     context_object_name = "Doctor"
 
     
@@ -90,7 +142,7 @@ class EditarDoctorView(UpdateView):
     model = Doctor    
     template_name = "doctor_new.html"
     form_class = DoctorForm
-    success_url = reverse_lazy('doctor_view')
+    success_url = reverse_lazy('base:doctor_view')
     context_object_name = "Doctor"
 
 

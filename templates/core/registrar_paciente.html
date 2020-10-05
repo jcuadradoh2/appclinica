@@ -10,9 +10,6 @@
             <div class="col-md-8">
                 <h3 class="font-weight-bold">Mantenimiento de Pacientes</h3>
             </div>
-            <div class="col-md-4 ">
-                <a href="{% url 'base:paciente' %}" class="btn btn-primary float-right">Cancelar</a>
-            </div>
         </div>
     </div>
     <div class="card-body border rounded-top border-dark">
@@ -28,15 +25,122 @@
                     </button>
                 </div>
                 {% endif %}
-                {% for campo in form %}
-                <div class="form-group row">
-                    <label class="col-md-2 col-form-label" for="id_{{ campo.name }}">{{campo.label}}</label>
-                    <div class="col-md-10">
-                        {{campo}}
+
+
+
+                <div class="card mx-5" style="">
+                    <!-------Aqui va el color background-color: #EBF5FB---------->
+                    <div class="row mx-2 my-3 form-group">
+                        <div class="col-9 font-weight-bold text-dark">
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.nombre.id_for_label }}">Nombre: </label>
+                                    {{ form.nombre }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.cedula.id_for_label }}">Cedula: </label>
+                                    {{ form.cedula }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.apellido.id_for_label }}">Apellido: </label>
+                                    {{ form.apellido }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.direccion.id_for_label }}">Direccion: </label>
+                                    {{ form.direccion }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.nacimiento.id_for_label }}">Fecha Nacimiento: </label>
+                                    {{ form.nacimiento }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.telefono.id_for_label }}">Telefono: </label>
+                                    {{ form.telefono }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.sexo.id_for_label }}">Sexo: </label>
+                                    {{ form.sexo }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.email.id_for_label }}">email: </label>
+                                    {{ form.email }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.civil.id_for_label }}">civil: </label>
+                                    {{ form.civil }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.sangre.id_for_label }}">Tipo de Sangre: </label>
+                                    {{ form.sangre }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.hijos.id_for_label }}">Numero de Hijos: </label>
+                                    {{ form.hijos }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.estado.id_for_label }}">Estado: </label>
+                                    {{ form.estado }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.profesion.id_for_label }}">Profesion: </label>
+                                    {{ form.profesion }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.titulo.id_for_label }}">Titulo: </label>
+                                    {{ form.titulo }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.ciudad.id_for_label }}">Ciudad: </label>
+                                    {{ form.ciudad }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-3">
+                            <div class="row justify-content-center">
+                                <div class="card mt-4 text-dark" style="width: 15rem;">
+                                    <img class="card-img-top" src="{% static 'img/sinfoto.png' %}" alt="Card image" id="preview_foto">
+                                    <div class="card-body">
+                                        <h5 class="card-title font-weight-lighter">Imagen de perfil</h5>
+                                        <p class="card-text">
+                                            <div class="form-group" onclick="preview( {{form.foto.id_for_label}} )">
+                                                {{ form.foto }}
+                                            </div>
+                                        </p>
+                                        {% comment %} <p class="card-text"><button type="submit"
+                                                class="btn botones">Guardar</button></p> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
-                <button class="btn btn-success btn-block" type="submit">Registrar</button>
+
+                <div class=" form-group row justify-content-center my-4">
+                    <div class="col-4 col-md-2">
+                        <a href="{% url 'base:paciente' %}"><input class="btn bg-danger w-100 text-light float-right"
+                                value="Cancelar"></input></a>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <button type="submit" class="btn botones w-100 float-left">Guardar</button>
+                    </div>
+                </div>
+
+                
 
             </form>
         </div>
@@ -48,3 +152,20 @@
 
 
 {% endblock main %}
+
+{% block jscript %}
+<script>
+    function preview() {
+
+        const $seleccionArchivos = document.querySelector("#id_logo"),
+            $imagenPrevisualizacion = document.querySelector("#preview_logo"),
+            $imagen = document.querySelector("#preview_foto");
+        $seleccionFoto = document.querySelector("#id_foto");
+        $seleccionFoto.addEventListener("change", () => {
+            const objectURL = URL.createObjectURL($seleccionFoto.files[0]);
+            $imagen.src = objectURL;
+        });
+    }
+    preview();
+</script>
+{% endblock jscript %}

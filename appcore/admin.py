@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from appcore.models import (Titulo, Profesion, Provincia, Paciente, Ciudad, Sangre)
+from appcore.models import (Titulo, Profesion, Provincia, Paciente, Ciudad, Sangre, Doctor, Horario, Agenda)
 
 
 admin.site.register(Titulo)
@@ -9,3 +9,6 @@ admin.site.register(Provincia)
 admin.site.register(Paciente)
 admin.site.register(Ciudad)
 admin.site.register(Sangre)
+admin.site.register(Doctor)
+admin.site.register(Horario)
+admin.site.register(Agenda)

@@ -26,12 +26,14 @@
         </h4>
       </div>
       <div class="menu">
-        <a href="{% url  'opciones' %}" class="d-block p-4 text-light"> <i class="fas fa-home fa-lg mr-2"></i>
+        <a href="{% url  'menu' %}" class="d-block p-4 text-light"> <i class="fas fa-home fa-lg mr-2"></i>
           Inicio</a>
         <a href="{% url 'base:paciente' %}" class="d-block p-4 text-light"> <i
             class="fas fa-user-injured fa-lg mr-2"></i> Pacientes</a>
-        <a href="#" class="d-block p-4 text-light"> <i class="fas fa-notes-medical fa-lg mr-2"></i> Consulta</a>
-        <a href="#" class="d-block p-4 text-light"> <i class="fas fa-clipboard-list fa-lg mr-2"></i> Agenda</a>
+        <a href="{% url 'base:cita' %}" class="d-block p-4 text-light"> <i
+            class="fas fa-notes-medical fa-lg mr-2"></i> Consulta</a>
+        <a href="{% url 'base:crear_cita' %}" class="d-block p-4 text-light"> <i class="fas fa-clipboard-list fa-lg mr-2"></i>
+          Agenda</a>
         <a href="{% url 'base:doctor_view' %}" class="d-block p-4 text-light"> <i class="fas fa-user-md fa-lg mr-2"></i> Doctor</a>
         <a href="#" class="d-block p-4 text-light"> <i class="fas fa-cogs fa-lg mr-2"></i> Configuracion</a>
       </div>
