@@ -45,7 +45,7 @@
                                 <th scope="col" class="text-center">Acción</th>
                             </thead>
                         </thead>
-                        <tbody id="tabla shadow">
+                        <tbody id="tabla">
                             {% for data in datos %}
                             <tr>
                                 <th class="text-center">{{ data.id }}</th>
@@ -165,7 +165,7 @@
                     <input type="hidden" name="id" id="id" value="">
                     <input type="hidden" name="action" value="elim">
                     <div class="h3 text-center">
-                        <label class="text-primary">¿Esta seguro de eliminar el paciente?</label>
+                        <label class="text-primary">¿Esta seguro de eliminar el paciente?</label><br>
                         <span class="text-light badge" id="descripcion"></span><br>
                     </div>
                 </div>
@@ -181,13 +181,15 @@
 {% endblock frmodal %}
 {% block jscript %}
 <script>
-    $(function () {
-        $('#tabla').on('click', 'a[rel="action"]', function () {
+    $(function () {              
+        $('#tabla').on('click', 'a[rel="action"]', function () {            
             let data = $(this).data('json'),
                 action = data.accion,
-                id = data.id;
-            let desc = $(this).parents('tr').children('td').eq(1).html();
+                id = data.id;  
+            alert(action + id)          
+            let desc = $(this).parents('tr').children('td').eq(0).html();            
             $('#descripcion').html(desc);
+            alert(id)
             $('#frmEliminar #id').val(id);
             $('#myModal').modal('show');
             return;
