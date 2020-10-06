@@ -1,6 +1,7 @@
 {% extends "menu.html" %}
 {% block main %}
 <div class="row text-dark">
+
     {% load static %}
     <div class="col-12">
         <div class="card">
@@ -26,10 +27,6 @@
                         </button>
                     </div>
                     {% endif %}
-
-
-                    
-
                         <div class="card mx-5" style="">
                             <!-------Aqui va el color background-color: #EBF5FB---------->
                             <div class="row mx-2 my-3 form-group">
@@ -105,10 +102,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3">                                    
                                     <div class="row justify-content-center">
                                         <div class="card mt-4" style="width: 15rem;">
+                                        {% if foto.foto == '' or foto.foto == None %}
                                             <img class="card-img-top" src="{% static 'img/sinfoto.png' %}" alt="Card image" id="preview_foto"> 
+                                        {% else %}
+                                            <img class="card-img-top" src="{{foto.foto.url}}" alt="Card image" id="preview_foto"> 
+                                        {% endif %}
+                                            
                                             <div class="card-body">
                                                 <h5 class="card-title font-weight-lighter">Imagen de perfil</h5>
                                                 <p class="card-text">
@@ -124,13 +126,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
-
                         <div class="card mt-4 mx-5">
                             <div class="row mx-2 mt-4">
                                 <div class="col-9 font-weight-bolder">
@@ -166,10 +161,15 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-3 form-group">
                                     <div class="row justify-content-center">
-                                        <div class="card mt-4" style="width: 15rem;">
-                                            <img class="card-img-top" src="{% static 'img/sinfoto.png' %}" alt="Card image" id="preview_logo">
+                                        <div class="card mt-4" style="width: 15rem;">                                        
+                                             {% if foto.logo == '' or foto.logo == None %}
+                                                <img class="card-img-top" src="{% static 'img/sinfoto.png' %}" alt="Card image" id="preview_logo"> 
+                                            {% else %}
+                                                <img class="card-img-top" src="{{foto.logo.url}}" alt="Card image" id="preview_logo"> 
+                                            {% endif %}
                                             <div class="card-body">
                                                 <h5 class="card-title font-weight-lighter">Nuevo logo</h5>
                                                 <p class="card-text">
@@ -205,7 +205,7 @@
     function preview(){
         const $seleccionArchivos = document.querySelector("#id_logo"),
         $imagenPrevisualizacion = document.querySelector("#preview_logo"),
-        $imagen = document.querySelector("#preview_foto");
+        $imagen = document.querySelector("#preview_foto"),
         $seleccionFoto=document.querySelector("#id_foto");    
         $seleccionArchivos.addEventListener("change", () => {   
             const objectURL = URL.createObjectURL($seleccionArchivos.files[0]);    

@@ -39,8 +39,7 @@
                                 <th scope="col" class="text-center">Sexo</th>
                                 <th scope="col" class="text-center">Ciudad</th>
                                 <th scope="col" class="text-center">Email</th>
-                                <th scope="col" class="text-center">Consultoria</th>
-                                <th scope="col" class="text-center">Horario</th>
+                                <th scope="col" class="text-center">Consultoria</th>                                
                                 <th scope="col" class="text-center">Duracion</th>
                                 <th scope="col" class="text-center">Acción</th>
                             </thead>
@@ -68,10 +67,8 @@
                                 {% endif %}
                                 <td class="text-center">{{data.ciudad.descripcion}}</td>
                                 <td class="text-center">{{data.email}}</td>
-                                <td class="text-center">{{data.consultoria}}</td>
-                                <td class="text-center">{{data.horario.dia }} &nbsp {{ data.horario.desde }} &nbsp
-                                    {{data.horario.hasta}}</td>
-                                <td class="text-center">{{data.duracion}}</td>
+                                <td class="text-center">{{data.consultoria}}</td>                                
+                                <td class="text-center">{{ data.duracion }} min</td>
                                 <td style="width:130px" class="text-center">
                                     <a href="{% url 'base:doctor_edit' data.id %}" class="btn btn-warning btn-sm w-25">
                                         <span class='fa fa-edit fa-lg'></span>
@@ -86,11 +83,8 @@
                         </tbody>
                     </table>
 
-
                     <!-- Menú de paginación -->
                     <!-- Fin del pagineo -->
-
-
                     <div class="row">
                         <div class="col-4 float-left">
                             <label class="text-muted">
@@ -143,8 +137,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--<p class='alert alert-danger'>Si No hay clientes registrados presenta esta alerta</p>-->
+        </div>        
     </div>
 </div>
 {% endblock %}

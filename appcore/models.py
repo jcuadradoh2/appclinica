@@ -116,7 +116,8 @@ class Paciente(Persona):
 
 
 class Horario(models.Model): 
-    d_semana={(0,'Domingo'), (1, 'Lunes'), (2, 'Martes'), (3, 'Miercoles'), (4,'Jueves'), (5, 'Viernes'), (6, 'Sabado'), (7, 'Domingo')}   
+    d_semana=((0,'Domingo'), (1, 'Lunes'), (2, 'Martes'), (3, 'Miercoles'), (4,'Jueves'), (5, 'Viernes'), (6, 'Sabado'), (7, 'Domingo'))   
+    #d_semana=((0,'Domingo'), (1, 'Lunes'), (2, 'Martes'), (3, 'Miercoles'), (4,'Jueves'), (5, 'Viernes'), (6, 'Sabado'), (7, 'Domingo'))   
     dia=models.IntegerField('Dia', choices=d_semana, default=1)
     desde=models.TimeField('Desde', blank=True, null=True)
     hasta=models.TimeField('Hasta', blank=True, null=True)    

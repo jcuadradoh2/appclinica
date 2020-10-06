@@ -144,7 +144,12 @@ class EditarDoctorView(UpdateView):
     template_name = "doctor_new.html"
     form_class = DoctorForm
     success_url = reverse_lazy('base:doctor_view')
-    context_object_name = "Doctor"
+    context_object_name = "Doctor"  
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['foto'] = Doctor.objects.get(id=self.kwargs['pk'])
+        return context
 
 
 class EliminarDoctorView(DeleteView):    
@@ -155,3 +160,19 @@ class EliminarDoctorView(DeleteView):
         return redirect('base:doctor_view')
 
 #-----------------------------------------------------------------------Diagnostico
+
+class DiagnosticoView(ListView):
+    model = Doctor
+    template_name = "diagnostico.html"
+    context_object_name = "Diagnostico"    
+    paginate_by = 3
+
+    def get_queryset(self):
+        nombre = self.request.GET.get('nombre') if self.request.GET.get('nombre') else ''                
+        return self.model.objects.filter(nombre__icontains=nombre, estado=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['nombre'] = self.request.GET.get(
+            'nombre') if self.request.GET.get('nombre') else ''               
+        return context
