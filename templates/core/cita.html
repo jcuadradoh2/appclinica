@@ -81,6 +81,8 @@
 
                                 <td class="text-center"><a class="btn btn-primary btn-sm"
                                         href="{% url 'base:editar_cita' cita.id %}">Editar</a>
+                                        <a class="btn btn-primary btn-sm"
+                                            href="{% url 'base:signos' %}">Signos Vitales</a>
                                     <a rel="action" data-json='{"accion":"elim" ,"id":"{{cita.id}}"}'
                                         class="btn btn-danger btn-sm" href="#">Eliminar</a>
                                 </td>
@@ -183,7 +185,7 @@
 <!-- Final Formulario Modal-->
 
 
-
+ 
 
 
 {% endblock %}

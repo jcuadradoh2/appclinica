@@ -17,6 +17,14 @@ urlpatterns = [
     path('eliminar_cita/<int:pk>/',
          EliminarCitaView.as_view(), name='eliminar_cita'),
 
+
+    path('signos/', SignosView.as_view(), name='signos'),
+    path('crear_signo/',
+         crearSignoView.as_view(), name='crear_signo'),
+    path('editar_signo/<int:pk>/',
+         EditarSignoView.as_view(), name='editar_signo'),
+
+
      path('', IndexView.as_view(), name='index'),  
      path('doctor_view/', login_required(DoctorView.as_view()), name='doctor_view'), 
      path('doctor/', CrearDoctorView.as_view(), name='doctor'), 

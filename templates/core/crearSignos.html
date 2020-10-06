@@ -8,10 +8,10 @@
     <div class="card-header  text-light">
         <div class="row p-3" style="background: gray;">
             <div class="col-md-8">
-                <h3 class="font-weight-bold">Mantenimiento de Cita</h3>
+                <h3 class="font-weight-bold">Mantenimiento de Signos</h3>
             </div>
             <div class="col-md-4 ">
-                <a href="{% url 'base:cita' %}" class="btn btn-primary float-right">Cancelar</a>
+                <a href="{% url 'base:paciente' %}" class="btn btn-primary float-right">Cancelar</a>
             </div>
         </div>
     </div>
@@ -45,11 +45,55 @@
                             <div class="row">
                                 <div class="form-group col-12 col-md-6">
                                     <label for="{{form.paciente.id_for_label }}">Paciente: </label>
-                                    {{ form.paciente }} 
+                                    {{ form.paciente }}
                                 </div>
-
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.estatura.id_for_label }}">Estatura: </label>
+                                    {{ form.estatura }}
+                                </div>
                             </div>
                             <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.peso.id_for_label }}">Peso : </label>
+                                    {{ form.peso }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.masa.id_for_label }}">Masa Corporal : </label>
+                                    {{ form.masa }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.temperatura.id_for_label }}">Temperatura : </label>
+                                    {{ form.temperatura }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.frecRespira.id_for_label }}">Frecuencia Respiratoria : </label>
+                                    {{ form.frecRespira }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.frecCard.id_for_label }}">Frecuencia Cardiaca : </label>
+                                    {{ form.frecCard }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.porGraCor.id_for_label }}">% Grasa Corporal : </label>
+                                    {{ form.porGraCor }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.porMasaMus.id_for_label }}">% Masa Muscular : </label>
+                                    {{ form.porMasaMus }}
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="{{form.precionArt.id_for_label }}">Precion Arterial : </label>
+                                    {{ form.precionArt }}
+                                </div>
+                            </div>
+                            
+                            <!-- <div class="row">
                                 <div class="form-group col-12 col-md-6">
                                     <label for="{{form.doctor.id_for_label }}">Medico: </label>
                                     {{ form.doctor }}
@@ -74,7 +118,7 @@
                                     <label for="{{form.estado.id_for_label }}">Estado: </label>
                                     {{ form.estado }}
                                 </div>
-                            </div>
+                            </div> -->
 
 
                         </div>
@@ -102,5 +146,3 @@
 </div>
 
 {% endblock main %}
-
-

@@ -28,7 +28,7 @@
 
 
 
-                <div class="card mx-5" style="">
+                <div class="card mx-5" >
                     <!-------Aqui va el color background-color: #EBF5FB---------->
                     <div class="row mx-2 my-3 form-group">
                         <div class="col-9 font-weight-bold text-dark">
@@ -73,8 +73,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-12 col-md-6">
-                                    <label for="{{form.civil.id_for_label }}">civil: </label>
+                                <div class="form-group col-12 col-md-6 ">
+                                    <label  for="{{form.civil.id_for_label }}">civil:
+                                    </label>
                                     {{ form.civil }}
                                 </div>
                                 <div class="form-group col-12 col-md-6">
@@ -113,7 +114,8 @@
                         <div class="col-3">
                             <div class="row justify-content-center">
                                 <div class="card mt-4 text-dark" style="width: 15rem;">
-                                    <img class="card-img-top" src="{% static 'img/sinfoto.png' %}" alt="Card image" id="preview_foto">
+                                    <img class="card-img-top" src="{% static 'img/sinfoto.png' %}" alt="Card image"
+                                        id="preview_foto">
                                     <div class="card-body">
                                         <h5 class="card-title font-weight-lighter">Imagen de perfil</h5>
                                         <p class="card-text">
@@ -140,7 +142,7 @@
                     </div>
                 </div>
 
-                
+
 
             </form>
         </div>
@@ -167,5 +169,7 @@
         });
     }
     preview();
+
+
 </script>
 {% endblock jscript %}

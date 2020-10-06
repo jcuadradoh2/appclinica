@@ -1,6 +1,6 @@
 from django import forms
 from django.db.models import fields
-from .models import Paciente, Doctor, Agenda
+from .models import Paciente, Doctor, Agenda, SignosVitales
 
 
 class PacienteForm(forms.ModelForm):
@@ -245,27 +245,88 @@ class CitaForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
 
-            'Paciente': forms.TextInput(
+            'paciente': forms.Select(
                 attrs={
                     'class': 'form-control'
                 }
             ),
-            'Medico': forms.TextInput(
+            'doctor': forms.Select(
                 attrs={
                     'class': 'form-control'
                 }
             ),
-            'Fecha Cita': forms.DateInput(
+            'fecha': forms.DateInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'type': 'date'
                 }
             ),
-            'Hora Cita': forms.Select(
+            'hora': forms.TextInput(
                 attrs={
                     'class': 'form-control'
                 }
             ),
             'estado': forms.CheckboxInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            )
+        }
+
+
+class SignosForm(forms.ModelForm):
+    class Meta:
+        model = SignosVitales
+
+        fields = '__all__'
+        widgets = {
+
+            'paciente': forms.Select(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'estatura': forms.NumberInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'peso': forms.NumberInput(
+                attrs={
+                    'class': 'form-control', 
+                }
+            ),
+            'masa': forms.NumberInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'temperatura': forms.NumberInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'frecRespira': forms.NumberInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'frecCard': forms.NumberInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'porGraCor': forms.NumberInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'porMasaMus': forms.NumberInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'precionArt': forms.TextInput(
                 attrs={
                     'class': 'form-control'
                 }

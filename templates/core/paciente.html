@@ -61,9 +61,10 @@
                                         class="img-thumbnail rounded-circle" width="40px">
                                 </td>
                                 {% endif %}
-                                <!-- <td class="text-center">foto</td> -->
+                                
 
-                                <td class="text-center"><span>{{paciente.nombre}}</span> </td>
+                                <td class="text-center"><span>{{paciente.nombre | capfirst }} &nbsp
+                                        {{ paciente.apellido | capfirst }}</span> </td>
                                 {% if paciente.sexo == 'M' %}
                                 <td class="text-center"><span
                                         class="badge badge-pill badge-success">{{paciente.sexo}}</span>
@@ -81,7 +82,8 @@
 
                                 <td class="text-center"><a class="btn btn-primary btn-sm"
                                         href="{% url 'base:editar_paciente' paciente.id %}">Editar</a>
-                                    <a class="btn btn-primary btn-sm" href="#">Historia</a>
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{% url 'base:editar_signo' paciente.id %}">Registra</a>
                                     <a rel="action" data-json='{"accion":"elim" ,"id":"{{paciente.id}}"}'
                                         class="btn btn-danger btn-sm" href="#">Eliminar</a>
                                 </td>

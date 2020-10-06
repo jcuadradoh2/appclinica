@@ -89,6 +89,7 @@ class Persona(models.Model):
             pass
         return None
 
+
 class Sangre(models.Model):
     tipo = models.CharField('Tipo de Sangre', max_length=20, unique=True)
     estado = models.BooleanField(default=True)
@@ -115,42 +116,47 @@ class Paciente(Persona):
         return '{}'.format(self.nombre)
 
 
-class Horario(models.Model): 
-    d_semana={(0,'Domingo'), (1, 'Lunes'), (2, 'Martes'), (3, 'Miercoles'), (4,'Jueves'), (5, 'Viernes'), (6, 'Sabado'), (7, 'Domingo')}   
-    dia=models.IntegerField('Dia', choices=d_semana, default=1)
-    desde=models.TimeField('Desde', blank=True, null=True)
-    hasta=models.TimeField('Hasta', blank=True, null=True)    
-    estado=models.BooleanField(default=True)
+class Horario(models.Model):
+    d_semana = {(0, 'Domingo'), (1, 'Lunes'), (2, 'Martes'), (3, 'Miercoles'),
+                (4, 'Jueves'), (5, 'Viernes'), (6, 'Sabado'), (7, 'Domingo')}
+    dia = models.IntegerField('Dia', choices=d_semana, default=1)
+    desde = models.TimeField('Desde', blank=True, null=True)
+    hasta = models.TimeField('Hasta', blank=True, null=True)
+    estado = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name='Dia'
-        verbose_name_plural='Dias'
+        verbose_name = 'Dia'
+        verbose_name_plural = 'Dias'
 
     def __str__(self):
         return '{}'.format(self.dia)
 
+
 class Doctor(Persona):
-    consultoria=models.CharField(max_length=200)
-    lugar=models.CharField(verbose_name='Direccion de Consultorio', max_length=100)
-    logo=models.ImageField(verbose_name='Logo', upload_to='Logos/', blank=True, null=True)
-    horario=models.ManyToManyField(Horario)
-    registro=models.CharField(verbose_name='Registro Medico', max_length=50)
-    duracion=models.IntegerField(verbose_name='Duracion de Consulta', default=30)
-    estado=models.BooleanField(default=True)
+    consultoria = models.CharField(max_length=200)
+    lugar = models.CharField(
+        verbose_name='Direccion de Consultorio', max_length=100)
+    logo = models.ImageField(
+        verbose_name='Logo', upload_to='Logos/', blank=True, null=True)
+    horario = models.ManyToManyField(Horario)
+    registro = models.CharField(verbose_name='Registro Medico', max_length=50)
+    duracion = models.IntegerField(
+        verbose_name='Duracion de Consulta', default=30)
+    estado = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name='Doctor'
-        verbose_name_plural='Doctores'
+        verbose_name = 'Doctor'
+        verbose_name_plural = 'Doctores'
 
     def __str__(self):
-            return '{}'.format(self.nombre)
+        return '{}'.format(self.nombre)
 
 
 class Agenda(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.PROTECT)
     doctor = models.ForeignKey(Doctor, on_delete=models.PROTECT)
     fecha = models.DateField(
-        'Fecha de Agenda', blank=True, null=True, default=date.today())
+        'Fecha de Agenda', blank=True, null=True)
     hora = models.TimeField('Hora', default=datetime.now().time())
     estado = models.BooleanField(default=True)
 
@@ -159,11 +165,10 @@ class Agenda(models.Model):
         verbose_name_plural = 'Agendas'
 
     def __str__(self):
-        return '{}'.format(self.fecha)
+        return '{} {}'.format(self.paciente.nombre, self.paciente.apellido)
 
 
-
-#---------------------------------------------------------------------Sintomas
+# ---------------------------------------------------------------------Sintomas
 class Sintoma(models.Model):
     descripcion = models.CharField('Sintoma', max_length=100)
     estado = models.BooleanField(default=True)
@@ -187,3 +192,29 @@ class Diagnostico(models.Model):
 
     def __str__(self):
         return '{}'.format(self.descripcion)
+
+
+class SignosVitales(models.Model):
+    paciente = models.ForeignKey(Agenda, on_delete=models.PROTECT, primary_key=True)
+    estatura = models.FloatField('estatura', default=1.60)
+    peso = models.IntegerField('peso')
+    masa = models.FloatField('Masa Corporal', blank=True, null=True, default=0)
+    temperatura = models.FloatField('Temperatura')
+    frecRespira = models.IntegerField(
+        'Frecuencia Respiratoria', blank=True, null=True, default=0)
+    frecCard = models.IntegerField(
+        'Frecuencia Cardiaca', blank=True, null=True, default=0)
+    porGraCor = models.IntegerField(
+        'Porcentaje Grasa Corporal', blank=True, null=True, default=0)
+    porMasaMus = models.IntegerField(
+        'Porcentaje Masa Muscular', blank=True, null=True, default=0)
+    precionArt = models.CharField('Precion Arterial', max_length=10)
+
+    class Meta:
+        verbose_name = 'SignosVitales'
+        verbose_name_plural = 'SignosVitales'
+
+    def __str__(self):
+
+        # return '{}'.format(self.paciente.pk)
+        return '{} {}'.format(self.paciente.paciente, self.paciente.paciente.apellido)

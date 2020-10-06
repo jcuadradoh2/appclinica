@@ -10,7 +10,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Mantenimientos</a></li>
-                        <li class="breadcrumb-item active " aria-current="page">Doctor</li>                        
+                        <li class="breadcrumb-item active " aria-current="page">Doctor</li>
                     </ol>
                 </nav>
             </div>
@@ -18,8 +18,8 @@
                 <div class="table-responsive-sm"><br>
                     <form class="row" style="margin-bottom:5px">
                         <div class="col-5 col-md-3">
-                            <input class="form-control mr-2" placeholder="Nombre a Buscar"
-                            name="nombre" value={{nombre}}>
+                            <input class="form-control mr-2" placeholder="Nombre a Buscar" name="nombre"
+                                value={{nombre}}>
                         </div>
                         <div class="col-2 col-md-1 justify-content-start">
                             <button type="submit" class="btn botones float-md-right float-left">Buscar</button>
@@ -34,7 +34,7 @@
 
                             <thead class="thead-dark">
                                 <th scope="col" class="text-center">ID</th>
-                                <th scope="col" class="text-center">Foto</th>                                
+                                <th scope="col" class="text-center">Foto</th>
                                 <th scope="col" class="text-center">Nombres</th>
                                 <th scope="col" class="text-center">Sexo</th>
                                 <th scope="col" class="text-center">Ciudad</th>
@@ -55,7 +55,7 @@
                                 {% else %}
                                 <td class=" text-center"><img src="{% static 'img/sinfoto.png' %}"
                                         class="img-thumbnail rounded-circle" width="40px" height="40px"></td>
-                                {% endif %}                                
+                                {% endif %}
                                 <td class="text-center">{{ data.nombre | capfirst }} &nbsp
                                     {{ data.apellido | capfirst }}</td>
                                 {% if data.sexo == 'M' %}
@@ -76,10 +76,8 @@
                                     <a href="{% url 'base:doctor_edit' data.id %}" class="btn btn-warning btn-sm w-25">
                                         <span class='fa fa-edit fa-lg'></span>
                                     </a>
-                                    <a href="#" class="btn btn-danger btn-sm w-25" rel="action"
-                                        data-json='{"accion":"elim" ,"id":"{{data.id}}"}'>
-                                        <span class='fa fa-trash-o fa-lg'></span>
-                                    </a>
+                                    <a rel="action" data-json='{"accion":"elim" ,"id":"{{data.id}}"}'
+                                        class="btn btn-danger btn-sm" href="#">Eliminar</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -148,6 +146,7 @@
     </div>
 </div>
 {% endblock %}
+
 {% block frmodal %}
 <!-- inicio formulario Modal para Eliminar -->
 <div class="modal fade" id="myModal" tabindex="-1">
@@ -156,7 +155,7 @@
             <form name="frmEliminar" id="frmEliminar" method="POST" action="{% url 'base:doctor_delete' 0 %} ">
                 {% csrf_token %}
                 <div class="modal-header bg-primary text-light">
-                    <h3 class="modal-title ml-5">Mensaje Del Sistema</h3>
+                    <h3 class="modal-title ml-5 font-weight-bold">Mensaje Del Sistema</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -165,9 +164,12 @@
                     <input type="hidden" name="id" id="id" value="">
                     <input type="hidden" name="action" value="elim">
                     <div class="h3 text-center">
-                        <label class="text-primary">¿Esta seguro de eliminar el paciente?</label>
-                        <span class="text-light badge" id="descripcion"></span><br>
+                        <label class="text-primary font-weight-bold">Esta Seguro De Eliminar El Paciente:</label>
+                        <span class="text-light font-weight-bold badge badge-danger badge-pill"
+                            id="descripcion"></span><br>
+
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -179,6 +181,7 @@
 </div>
 <!-- Final Formulario Modal-->
 {% endblock frmodal %}
+
 {% block jscript %}
 <script>
     $(function () {

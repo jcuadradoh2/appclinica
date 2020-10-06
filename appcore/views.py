@@ -3,8 +3,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Paciente, Doctor, Agenda
-from .forms import PacienteForm, DoctorForm, CitaForm
+from .models import Paciente, Doctor, Agenda, SignosVitales
+from .forms import PacienteForm, DoctorForm, CitaForm, SignosForm
 
 
 class PacienteView(ListView):
@@ -32,7 +32,7 @@ class CrearPacienteView(CreateView):
     #fields = ['nombre', 'apellido', 'cedula']
     template_name = "core/registrar_paciente.html"
     form_class = PacienteForm
-    success_url = reverse_lazy('base:paciente')
+    success_url = reverse_lazy('base:crear_signo')
     context_object_name = "pacientes"
 
 
@@ -152,3 +152,48 @@ class EliminarDoctorView(DeleteView):
         doctor = Doctor.objects.get(id=pk)
         doctor.delete()        
         return redirect('doctor_view')
+
+
+class SignosView(ListView):
+        model = SignosVitales
+        template_name = "core/signosVitales.html"
+        context_object_name = "signos"
+    #queryset = Paciente.objects.filter(estado=False)
+        paginate_by = 7
+        
+
+    # def get_queryset(self):
+    #     nombre = self.request.GET.get(
+    #         'nombre') if self.request.GET.get('nombre') else ''
+    #     return self.model.objects.filter(nombre__icontains=nombre, estado=True)
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['nombre'] = self.request.GET.get(
+    #         'nombre') if self.request.GET.get('nombre') else ''
+    #     context['titulo'] = "Consulta de pacientes"
+    #     return context
+
+
+class crearSignoView(CreateView):
+
+    model = Agenda
+    #fields = ['nombre', 'apellido', 'cedula']
+    context_object_name = "signos"
+    template_name = "core/crearSignos.html"
+    form_class = SignosForm
+    success_url = reverse_lazy('base:paciente')
+
+    
+
+
+class EditarSignoView(UpdateView):
+    model = Agenda
+    template_name = "core/crearSignos.html"
+    form_class = SignosForm
+    success_url = reverse_lazy('base:paciente')
+    context_object_name = "signos"
+
+                
+
+ 
